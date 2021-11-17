@@ -7,6 +7,13 @@
     "engines": {
         "vscode": "^0.10.1"
     },
+    "scripts": {
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild-base": "esbuild ./extension.js --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+        "esbuild": "npm run esbuild-base -- --sourcemap",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "test-compile": "tsc -p ./"
+    },
     "icon": "icon.png",
     "galleryBanner": {
         "color": "#007F00",
@@ -359,6 +366,7 @@
         }
     },
     "devDependencies": {
+        "esbuild": "^0.13.14",
         "eslint": "^5.16.0",
         "vscode": "0.11.x"
     },
